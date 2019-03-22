@@ -48,7 +48,7 @@ public class OnlinePredictions {
 
 //        KeyValueBytesStoreSupplier storeSupplier = Stores.inMemoryKeyValueStore("flights");
         GlobalKTable<String, byte[]> regressionsByAirPortTable = builder.globalTable(
-                "ml-data-input",
+                "onlineRegression-by-airport",
                 Materialized.<String, byte[], KeyValueStore<Bytes, byte[]>>as(
                         "flights")
                         .withKeySerde(Serdes.String())
