@@ -22,12 +22,12 @@ import org.slf4j.LoggerFactory;
 import util.JsonDeserializer;
 import util.JsonSerializer;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 public class OnlinePredictions {
 
@@ -88,7 +88,7 @@ public class OnlinePredictions {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             LOG.info("Kill signal received shutting down");
             doneSignal.countDown();
-            kafkaStreams.close(5, TimeUnit.SECONDS);
+            kafkaStreams.close(Duration.ofSeconds(5));
             LOG.info("Closed, bye");
         }));
 
